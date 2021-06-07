@@ -13,11 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/posts', function (){
-//    $posts = \Illuminate\Support\Facades\DB::table('posts')->get();
-//    return $posts;
-    return \App\Models\Post::all();
-});
+Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index']);
+Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create']);
+Route::get('/posts/{id}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::get('/', function () {
     return view('welcome');
