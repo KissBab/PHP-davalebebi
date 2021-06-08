@@ -17,11 +17,28 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
     public function create(){
+        return view('posts.create');
+    }
+    public function store(Request $request){
         Post::create([
-            'title' => 'testTitle',
-            'author_name' => 'testAuthor',
-            'post_text' => 'testText'
+            'title' => $request->get('title'),
+            'post_text' => $request->get('post_text'),
+            'author_name' => $request->get('author_name'),
         ]);
-        echo "The post has been created";
+        return redirect()->back();
+    }
+    public function edit($id){
+        $post = Post::findorfail($id);
+        return view('posts.edit', compact('post'));
+    }
+    public function update(Request $request, $id){
+        $post = Post::findorfail($id);
+        $post->update($request->all());
+        return redirect()->back();
+    }
+    public function delete($id){
+        $post = Post::findorfail($id);
+        $post->delete();
+        return redirect()->back();
     }
 }
