@@ -12,6 +12,10 @@ class PostController extends Controller
         $posts = Post::all();
         return view('posts.index', compact('posts'));
     }
+    public function list(){
+        $posts = Post::paginate(10);
+        return view('posts.list', compact('posts'));
+    }
     public function show($id){
         $post = Post::findorfail($id);
         return view('posts.show', compact('post'));

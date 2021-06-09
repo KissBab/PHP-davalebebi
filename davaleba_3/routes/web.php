@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index']);
+Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/list', [\App\Http\Controllers\PostController::class, 'list'])->name('posts.list');
 Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create']);
 Route::post('/posts/store', [\App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
 Route::get('/posts/{id}/edit', [\App\Http\Controllers\PostController::class, 'edit'])->name('posts.edit');
@@ -21,5 +22,6 @@ Route::delete('/posts/{id}/delete', [\App\Http\Controllers\PostController::class
 Route::get('/posts/{id}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::get('/', function () {
-    return view('welcome');
+    $posts =\App\Models\Post::all();
+    return view('test.test', compact('posts'));
 });
