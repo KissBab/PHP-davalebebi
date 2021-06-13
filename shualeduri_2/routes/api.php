@@ -19,4 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
-Route::get('/products', [\App\Http\Controllers\Api\ProductController::class, 'index']);
+Route::get('/categories', [\App\Http\Controllers\Api\CategoryController::class, 'index']);
+Route::get('/products/{name}/purchase', [\App\Http\Controllers\Api\ProductController::class, 'purchase']);
+Route::get('/my-orders', [\App\Http\Controllers\Api\CategoryController::class, 'index']);
+

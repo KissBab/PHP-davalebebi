@@ -18,13 +18,16 @@ class AuthController extends Controller
         ]);
         return $user;
     }
-    public function login(LoginRequest $request){
-        if (!auth()->attempt($request->all())){
-            return response(['error_message'=> 'Incorrect Credentials, Try Again']);
-        }
-        dd(auth()->user());
-//        $user = auth()->user();
-//        $token = $user->createToken('Api Token')->accessToken;
+    public function login(LoginRequest $request) {
+        if(!auth()->attempt($request->all())) {
+
+            return  response(['message' => "Something is wrong try again"]);
+
+        };
+        $user = auth()->user();
+        $token = $user->createToken('Api_token')->accessToken;
         return response(['user' => auth()->user(), 'token' => $token]);
+
+
     }
 }

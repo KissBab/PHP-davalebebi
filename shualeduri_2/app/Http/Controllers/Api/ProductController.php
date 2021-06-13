@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(){
-        return Product::all();
+    public function purchase($id, $stock){
+        $product = Product::findorfail($id);
+        if ($stock<=0){
+            return  response(['message' => "This Product Is Sold Out"]);
+        }
+        elseif ()
+
+        return $product;
     }
 }
