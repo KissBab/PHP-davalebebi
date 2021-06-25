@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\CalculateController::class, "calculate"]);
+Route::get('/mail', [\App\Http\Controllers\CalculateController::class, "mail"])->name('mail');
