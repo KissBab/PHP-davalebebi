@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -25,6 +26,9 @@ class AuthController extends Controller
         }
         $user = auth()->user();
         $token = $user->createToken('Api Token')->accessToken;
+        Mail::raw('You Have Just Been Signed In.', function ($message){
+            $message->to('test.123@gmail.com');
+        });
         return response(['user'=>auth()->user(), 'token'=>$token]);
     }
 }
